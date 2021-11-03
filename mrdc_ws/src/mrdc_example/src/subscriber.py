@@ -14,16 +14,14 @@
 
 import rclpy
 
-from std_msgs.msg import String
-
+from sensor_msgs.msg import Joy
 
 def main(args=None):
     rclpy.init(args=args)
 
     node = rclpy.create_node('minimal_subscriber')
 
-    subscription = node.create_subscription(
-        String, '/mrdc/example', lambda msg: node.get_logger().info('I heard: "%s"' % msg.data), 10)
+    subscription = node.create_subscription(Joy, '/joy', lambda msg: node.get_logger().info('I heard: "%s"' % msg), 10)
     subscription  # prevent unused variable warning
 
     rclpy.spin(node)
