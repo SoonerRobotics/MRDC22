@@ -111,7 +111,7 @@ def main():
         #averageHSV = hsv.mean(axis=0).mean(axis=0)
 
         #cv2.line(video, (200, 200), (375, 375), (255, 0, 0), 5)
-        cv2.putText()
+
 
 
         # pixels = np.float32(video.reshape(-1, 3))
@@ -127,7 +127,7 @@ def main():
 
         guessColor = determineColor(hsvConverted)
 
-        #cv2.putText(video, guessColor, (50,50), cv2.FONT_HERSHEY_COMPLEX, 3, (255, 0, 0), -1)
+        cv2.putText(video, guessColor, (50,50), cv2.FONT_HERSHEY_COMPLEX, 2, (255, 0, 0), 2)
 
         print("\nBGR: " + str(averageBGR) + " " + guessColor)
         #print("HSV: " + str(averageHSV))
