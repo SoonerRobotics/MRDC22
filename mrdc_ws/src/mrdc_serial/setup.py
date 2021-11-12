@@ -2,7 +2,7 @@ from setuptools import find_packages, setup
 from glob import glob
 import os
 
-package_name = 'mrdc_joy'
+package_name = 'mrdc_serial'
 
 setup(
     name=package_name,
@@ -20,7 +20,7 @@ setup(
     license='Apache License 2.0',
     entry_points={
         'console_scripts': [
-            'driver = mrdc_joy.driver:main'
+            'driver = mrdc_serial.driver:main'
         ],
     },
 )

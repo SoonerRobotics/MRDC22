@@ -1,4 +1,0 @@
-<launch>
-    <node pkg="joy" exec="joy_node" name="joystick" />
-    <node pkg="mrdc_joy" exec="driver" name="drive" output="screen"/>
-</launch>
