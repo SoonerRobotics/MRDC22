@@ -1,27 +1,28 @@
 import rclpy
-from rclpy.node import Node
-
 from sensor_msgs.msg import Joy
-from std_msgs.msg import String
+from mrdc_msgs.msg import Motors
 
 
 node = None
 publisher = None
 
+
 def onMessage(d: Joy):
     global node, publisher
 
-    msg = String()
-    msg.data = str(round(d.axes[1] * 255)) + "," + str(round(d.axes[4] * 255))
-    publisher.publish(msg);
+    msg = Motors()
+    msg.left_motor = d.axes[1] * 0.3
+    msg.right_motor = d.axes[3] * 0.3
+    publisher.publish(msg)
+
 
 def main(args=None):
-    global node, publisher 
+    global node, publisher
     rclpy.init(args=args)
 
     node = rclpy.create_node('minimal_subscriber')
-    publisher = node.create_publisher(String, '/mrdc/joy', 20)
-    subscription = node.create_subscription(Joy, '/joy', lambda msg: onMessage(msg), 20)
+    publisher = node.create_publisher(Motors, '/mrdc/joy', 20)
+    node.create_subscription(Joy, '/joy', lambda msg: onMessage(msg), 20)
 
     rclpy.spin(node)
 
