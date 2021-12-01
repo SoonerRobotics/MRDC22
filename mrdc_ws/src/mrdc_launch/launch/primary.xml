@@ -1,0 +1,4 @@
+<launch>
+    <include file="$(find-pkg-share mrdc_joy)/launch/joy.xml" />
+    <include file="$(find-pkg-share mrdc_serial)/launch/serial.xml" />
+</launch>
