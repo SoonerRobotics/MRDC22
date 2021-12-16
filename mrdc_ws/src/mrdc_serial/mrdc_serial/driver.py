@@ -27,7 +27,7 @@ def main(args=None):
 
     rclpy.init(args=args)
 
-    node = rclpy.create_node('mrdc_serial_joy')
+    node = rclpy.create_node('mrdc_serial')
     node.create_subscription(
         Motors, '/mrdc/joy', lambda msg: onMessage(msg), 20)
 

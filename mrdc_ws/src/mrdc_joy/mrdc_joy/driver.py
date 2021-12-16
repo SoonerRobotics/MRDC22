@@ -20,7 +20,7 @@ def main(args=None):
     global node, publisher
     rclpy.init(args=args)
 
-    node = rclpy.create_node('minimal_subscriber')
+    node = rclpy.create_node('mrdc_joy')
     publisher = node.create_publisher(Motors, '/mrdc/joy', 20)
     node.create_subscription(Joy, '/joy', lambda msg: onMessage(msg), 20)
 
