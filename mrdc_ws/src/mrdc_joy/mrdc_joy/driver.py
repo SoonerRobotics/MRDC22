@@ -10,6 +10,7 @@ publisher = None
 def onMessage(d: Joy):
     global node, publisher
 
+    # If you are getting weird motor values, this is the first place to look. I have had the below axes switch up on me before
     msg = Motors()
     msg.left_motor = d.axes[1] * 0.3
     msg.right_motor = d.axes[3] * 0.3
