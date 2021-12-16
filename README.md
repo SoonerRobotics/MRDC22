@@ -31,7 +31,9 @@ When using VSCode to edit this project, you may find the custom ROS2 messages ha
 
 ```shell
 # This is taking place from the root of the project (MRDC22) NOT (MRDC/mrdc_ws)
+# If you have not built the project before, uncomment the line below
 
+# cd mrdc_ws && colcon build && cd ..
 source mrdc_ws/install/setup.sh
 code .
 ```
