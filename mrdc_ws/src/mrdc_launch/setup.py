@@ -17,8 +17,8 @@ setup(
     ],
     install_requires=['setuptools'],
     maintainer='Dylan Zemlin',
-    maintainer_email='dylansmrw@gmail.com',
-    description='TODO: Package description',
-    license='Apache License 2.0',
+    maintainer_email='dylan.zemlin@gmail.com',
+    description='The MRDC Launch package that contains various launch utilities',
+    license='MIT License',
     entry_points={}
 )

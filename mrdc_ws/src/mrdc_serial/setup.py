@@ -17,9 +17,9 @@ setup(
     ],
     install_requires=['setuptools'],
     maintainer='Dylan Zemlin',
-    maintainer_email='dylansmrw@gmail.com',
-    description='TODO: Package description',
-    license='Apache License 2.0',
+    maintainer_email='dylan.zemlin@gmail.com',
+    description='The MRDC Serial package that controls communication to the arduino',
+    license='MIT License',
     entry_points={
         'console_scripts': [
             'driver = mrdc_serial.driver:main'
