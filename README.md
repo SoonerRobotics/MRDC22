@@ -16,11 +16,22 @@ colcon build
 ## Setup
 
 ```shell
-sudo install/setup.sh
+source install/setup.sh
 ```
 
 ## Launching
 
 ```shell
 ros2 launch mrdc_launch primary.xml
+```
+
+## VSCode Intellisense Fixes
+
+When using VSCode to edit this project, you may find the custom ROS2 messages have no types. A solution to this problem is to source the install file and then open VSC via the console.
+
+```shell
+# This is taking place from the root of the project (MRDC22) NOT (MRDC/mrdc_ws)
+
+source mrdc_ws/install/setup.sh
+code .
 ```
