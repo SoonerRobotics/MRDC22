@@ -14,7 +14,8 @@ arduino = serial.Serial("/dev/ttyUSB0", baudrate=115200)
 def onMessage(d: Motors):
     global node, subscriber
     obj = {
-        "speed": d.left_motor
+        "leftMotor": d.left_motor,
+        "rightMotor": d.right_motor,
     }
     arduino.write(json.dumps(obj).encode())
 
