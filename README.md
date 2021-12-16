@@ -1,4 +1,4 @@
-# MRDC22
+# MRDC22 ![GitHub](https://img.shields.io/github/license/SoonerRobotics/MRDC22?color=%23841617&style=flat-square)
 
 Software for the 2022 [Midwest Robotics Design Competition](https://mrdc.ec.illinois.edu/)
 
