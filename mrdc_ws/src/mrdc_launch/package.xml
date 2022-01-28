@@ -3,9 +3,9 @@
 <package format="3">
     <name>mrdc_launch</name>
     <version>1.0.0</version>
-    <description>The MRDC Launch package that contains primary launch files</description>
+    <description>The MRDC Launch package that contains various launch utilities</description>
     <maintainer email="dylan.zemlin@gmail.com">Dylan Zemlin</maintainer>
-    <license>Apache License 2.0</license>
+    <license>MIT License</license>
 
     <exec_depend>rclpy</exec_depend>
     <exec_depend>std_msgs</exec_depend>

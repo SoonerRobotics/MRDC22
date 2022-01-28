@@ -14,7 +14,8 @@ arduino = serial.Serial("/dev/ttyUSB0", baudrate=115200)
 def onMessage(d: Motors):
     global node, subscriber
     obj = {
-        "speed": d.left_motor
+        "left_motor": d.left_motor,
+        "right_motor": d.right_motor,
     }
     arduino.write(json.dumps(obj).encode())
 
@@ -26,7 +27,7 @@ def main(args=None):
 
     rclpy.init(args=args)
 
-    node = rclpy.create_node('mrdc_serial_joy')
+    node = rclpy.create_node('mrdc_serial')
     node.create_subscription(
         Motors, '/mrdc/joy', lambda msg: onMessage(msg), 20)
 

@@ -17,9 +17,9 @@ setup(
     ],
     install_requires=['setuptools'],
     maintainer='Dylan Zemlin',
-    maintainer_email='dylansmrw@gmail.com',
-    description='TODO: Package description',
-    license='Apache License 2.0',
+    maintainer_email='dylan.zemlin@gmail.com',
+    description='The MRDC Joy package that publishes controller input',
+    license='MIT License',
     entry_points={
         'console_scripts': [
             'driver = mrdc_joy.driver:main'

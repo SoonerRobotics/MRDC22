@@ -10,6 +10,7 @@ publisher = None
 def onMessage(d: Joy):
     global node, publisher
 
+    # If you are getting weird motor values, this is the first place to look. I have had the below axes switch up on me before
     msg = Motors()
     msg.left_motor = d.axes[1] * 0.3
     msg.right_motor = d.axes[3] * 0.3
@@ -20,7 +21,7 @@ def main(args=None):
     global node, publisher
     rclpy.init(args=args)
 
-    node = rclpy.create_node('minimal_subscriber')
+    node = rclpy.create_node('mrdc_joy')
     publisher = node.create_publisher(Motors, '/mrdc/joy', 20)
     node.create_subscription(Joy, '/joy', lambda msg: onMessage(msg), 20)
 
