@@ -12,6 +12,8 @@ def onMessage(d: Joy):
 
     # If you are getting weird motor values, this is the first place to look. I have had the below axes switch up on me before
     msg = Motors()
+
+    # The 0.3 below is a programmatic speed limiter, change if needed
     msg.left_motor = d.axes[1] * 0.3
     msg.right_motor = d.axes[3] * 0.3
     publisher.publish(msg)
