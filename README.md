@@ -21,8 +21,22 @@ source install/setup.sh
 
 ## Launching
 
+## All In One
+
 ```shell
 ros2 launch mrdc_launch primary.xml
+```
+
+## Remote Only
+
+```shell
+ros2 launch mrdc_launch remote.xml
+```
+
+## Arduino Only
+
+```shell
+ros2 launch mrdc_launch serial.xml
 ```
 
 ## VSCode Intellisense Fixes
