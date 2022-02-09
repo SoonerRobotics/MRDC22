@@ -6,21 +6,49 @@
 Motor leftMotor;
 Motor rightMotor;
 
-void setup() {
+// Used to reverse the left motor in the case it is reversed
+const bool reverseLeftMotor = false;
+
+// The last time a packet was received
+int lastPacket = 0;
+// Used when a timeout occurs and we write 0 to the motors
+bool hasWritten = false;
+
+void setup()
+{
     leftMotor.begin(4, 5, 6);
     rightMotor.begin(7, 8, 9);
 
     Serial.begin(115200);
 }
 
-void loop () {
-    if(Serial.available() > 0) {
+void loop()
+{
+    if (millis() - lastPacket > 750)
+    {
+        // This works until a better solution has been found
+        if (!hasWritten)
+        {
+            leftMotor.output(0);
+            rightMotor.output(0);
+            hasWritten = true;
+        }
+    }
+
+    if (Serial.available() > 0)
+    {
         DynamicJsonDocument doc(1024);
         deserializeJson(doc, Serial);
 
-        if(doc == NULL) return;
+        if (doc == NULL) {
+            return;
+        }
 
-        leftMotor.output(doc["left_motor"]);
-        rightMotor.output(doc["right_motor"]);
+        lastPacket = millis();
+        hasWritten = false;
+
+        int sign = reverseLeftMotor ? -1 : 1;
+        leftMotor.output(sign * doc["left_motor"].as<float>());
+        rightMotor.output(doc["right_motor"].as<float>());
     }
 }
