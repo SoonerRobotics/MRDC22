@@ -24,17 +24,6 @@ void setup()
 
 void loop()
 {
-    if (millis() - lastPacket > 750)
-    {
-        // This works until a better solution has been found
-        if (!hasWritten)
-        {
-            leftMotor.output(0);
-            rightMotor.output(0);
-            hasWritten = true;
-        }
-    }
-
     if (Serial.available() > 0)
     {
         DynamicJsonDocument doc(1024);
