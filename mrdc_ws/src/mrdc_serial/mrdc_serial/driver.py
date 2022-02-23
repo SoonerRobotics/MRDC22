@@ -8,8 +8,8 @@ from mrdc_msgs.msg import Motors
 node = None
 subscriber = None
 
-arduino = serial.Serial("/dev/ttyUSB0", baudrate=115200)
-
+drive_train = serial.Serial("/dev/ttyUSB0", baudrate=115200)
+arm = serial.Serial("/dev/ttyUSB1", baudrate=115200)
 
 def onMessage(d: Motors):
     global node, subscriber
@@ -17,7 +17,13 @@ def onMessage(d: Motors):
         "left_motor": d.left_motor,
         "right_motor": d.right_motor,
     }
-    arduino.write(json.dumps(obj).encode())
+    drive_train.write(json.dumps(obj).encode())
+
+    arm_obj = {
+        "left_motor": d.trigger_motor,
+        "right_motor": 0,
+    }
+    arm.write(json.dumps(arm_obj).encode())
 
 
 def main(args=None):
