@@ -22,7 +22,8 @@ setup(
     license='MIT License',
     entry_points={
         'console_scripts': [
-            'driver = mrdc_serial.driver:main'
+            'remote = mrdc_serial.remote:main',
+            'serial = mrdc_serial.serial:main'
         ],
     },
 )
