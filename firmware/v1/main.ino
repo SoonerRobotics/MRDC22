@@ -6,9 +6,6 @@
 Motor leftMotor;
 Motor rightMotor;
 
-// Used to reverse the left motor in the case it is reversed
-const bool reverseLeftMotor = false;
-
 // The last time a packet was received
 int lastPacket = 0;
 // Used when a timeout occurs and we write 0 to the motors
@@ -36,8 +33,7 @@ void loop()
         lastPacket = millis();
         hasWritten = false;
 
-        int sign = reverseLeftMotor ? -1 : 1;
-        leftMotor.output(sign * doc["left_motor"].as<float>());
+        leftMotor.output(doc["left_motor"].as<float>());
         rightMotor.output(doc["right_motor"].as<float>());
     }
 }
