@@ -76,6 +76,9 @@ def main():
     while True:
 
         _, video = videoFeed.read()
+        
+        # only uses video feed from small portion of screen
+        # can delete if we're using full camera feed
         smallVideo = video[200:375, 200:375]
 
         # average color of frame
