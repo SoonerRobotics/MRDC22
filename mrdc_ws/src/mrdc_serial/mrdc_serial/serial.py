@@ -39,7 +39,7 @@ def onSerialMessage(d: Motors):
 
 def onEStopSignal(d: Bool):
     global isForceStopped
-    isForceStopped = d
+    isForceStopped = d.data
 
 
 def main(args=None):
