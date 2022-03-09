@@ -22,7 +22,7 @@ setup(
     license='MIT License',
     entry_points={
         'console_scripts': [
-            'estop = mrdc_serial.estop:main'
+            'estop = mrdc_estop.estop:main'
         ],
     },
 )

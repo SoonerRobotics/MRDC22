@@ -14,9 +14,12 @@ def onJoyMessage(d: Joy):
     msg = Motors()
 
     # The 0.3 below is a programmatic speed limiter, change if needed
+    #msg.left_motor = d.axes[1] * 0.3
+    #msg.right_motor = d.axes[4] * 0.3
+    #msg.trigger_motor = 0.0 if d.axes[5] >= 0 else -(d.axes[5] * 0.3)
     msg.left_motor = d.axes[1] * 0.3
-    msg.right_motor = d.axes[4] * 0.3
-    msg.trigger_motor = 0.0 if d.axes[5] >= 0 else -(d.axes[5] * 0.3)
+    msg.right_motor = d.axes[3] * 0.3
+    msg.trigger_motor = 0.0
     publisher.publish(msg)
 
 

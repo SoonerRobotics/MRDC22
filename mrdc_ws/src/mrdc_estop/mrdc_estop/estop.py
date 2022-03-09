@@ -1,11 +1,11 @@
-import builtins
 import rclpy
 import time
+from std_msgs.msg import Bool
 
 node = None
 subscriber = None
 
-def onEStopMessage(d: builtins.bool):
+def onEStopMessage(d: Bool):
     print(d)
 
 
@@ -17,7 +17,7 @@ def main(args=None):
     rclpy.init(args=args)
 
     node = rclpy.create_node('mrdc_estop')
-    node.create_subscription(builtins.bool, '/mrdc/estop', lambda msg: onEStopMessage(msg), 20)
+    node.create_subscription(Bool, '/mrdc/estop', lambda msg: onEStopMessage(msg), 20)
 
     rclpy.spin(node)
 
