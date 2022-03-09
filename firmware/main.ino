@@ -44,10 +44,10 @@ void loop()
 
         left = doc["left_motor"].as<float>();
         right = doc["right_motor"].as<float>();
-        if(left < 0.01 && left > -0.01) {
+        if(left < 0.07 && left > -0.07) {
             left = 0;
         }
-        if(right < 0.01 && right > -0.01) {
+        if(right < 0.07 && right > -0.07) {
             right = 0;
         }
     }
