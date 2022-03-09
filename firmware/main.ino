@@ -1,5 +1,3 @@
-// TODO: Either switch from using json, or add validation to the document
-
 #include <RobotLib.h>
 #include <ArduinoJson.h>
 
@@ -11,6 +9,9 @@ int lastPacket = 0;
 // Used when a timeout occurs and we write 0 to the motors
 bool hasWritten = false;
 
+int left = 0;
+int right = 0;
+
 void setup()
 {
     leftMotor.begin(4, 5, 6);
@@ -21,6 +22,14 @@ void setup()
 
 void loop()
 {
+    leftMotor.output(left);
+    rightMotor.output(right);
+
+    if(millis() - 1000 > lastPacket) {
+        left = 0;
+        right = 0;
+    }
+
     if (Serial.available() > 0)
     {
         DynamicJsonDocument doc(1024);
@@ -33,7 +42,13 @@ void loop()
         lastPacket = millis();
         hasWritten = false;
 
-        leftMotor.output(doc["left_motor"].as<float>());
-        rightMotor.output(doc["right_motor"].as<float>());
+        left = doc["left_motor"].as<float>();
+        right = doc["right_motor"].as<float>();
+        if(left < 0.01 && left > -0.01) {
+            left = 0;
+        }
+        if(right < 0.01 && right > -0.01) {
+            right = 0;
+        }
     }
 }
