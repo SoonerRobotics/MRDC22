@@ -1,14 +1,22 @@
 import rclpy
 from sensor_msgs.msg import Joy
+from std_msgs.msg import Bool
 from mrdc_msgs.msg import Motors
 
 
 node = None
 publisher = None
+estop_publisher = None
 
 
 def onJoyMessage(d: Joy):
-    global node, publisher
+    global node, publisher, estop_publisher
+
+    if d.buttons[0] >= 1:
+        msg = Bool()
+        msg.data = True
+        estop_publisher.publish(msg)
+        return
 
     # If you are getting weird motor values, this is the first place to look. I have had the below axes switch up on me before
     msg = Motors()
@@ -24,7 +32,7 @@ def onJoyMessage(d: Joy):
 
 
 def main(args=None):
-    global node, publisher
+    global node, publisher, estop_publisher
     rclpy.init(args=args)
 
     # Create node and listen to joy
@@ -33,6 +41,7 @@ def main(args=None):
 
     # Create publisher so we can public to serial
     publisher = node.create_publisher(Motors, '/mrdc/serial', 20)
+    estop_publisher = node.create_publisher(Bool, '/mrdc/estop', 20)
 
     rclpy.spin(node)
 
