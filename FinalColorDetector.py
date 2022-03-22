@@ -90,6 +90,11 @@ def main():
 
         guessColor = determineColor(hue)
 
+        # ouputs dictionary for color
+        # return {color : guessColor}
+        
+        # can remove the following lines, so it only outputs the color as a json dict
+        
         cv2.putText(video, guessColor, (50,50), cv2.FONT_HERSHEY_COMPLEX, 2, (255, 0, 0), 2)
 
         print("\nBGR: " + str(averageBGR) + " " + guessColor)
