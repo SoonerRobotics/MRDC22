@@ -22,7 +22,7 @@ void setup()
 void messageHandler(BSONObject * bson_obj) {
   uint16_t cmd = bson_obj->getField("cmd").getInt();
 
-  if (cmd == 0x01) {
+  if (cmd == 0x02) {
     elevator = bson_obj->getField("elevator_motor").getInt();
     intake = bson_obj->getField("intake_motor").getInt();
     launcher = bson_obj->getField("launcher_motor").getInt();
@@ -33,8 +33,8 @@ void loop()
 {
   processSerialInput();
 
-  leftMotor.output(left);
-  rightMotor.output(right);
+  // WRITE MOTOR VALUES HERE
+  // use the three variables written above
 }
 
 void processSerialInput() {
