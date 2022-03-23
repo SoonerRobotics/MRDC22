@@ -1,4 +1,4 @@
 <launch>
-    <include file="$(find-pkg-share mrdc_serial)/launch/remote.xml" />
+    <include file="$(find-pkg-share mrdc_serial)/launch/remote_gui.xml" />
     <include file="$(find-pkg-share mrdc_serial)/launch/serial.xml" />
 </launch>
