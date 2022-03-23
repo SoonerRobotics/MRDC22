@@ -51,7 +51,7 @@ code .
 
 ## Controls
 
-For the drivetrain, use the left and right thumbsticks
+For the drivetrain, use the left and right thumbsticks  
 For the launcher, elevator and intake use the X, Y and B buttons
 
 ## GUI Website URL
