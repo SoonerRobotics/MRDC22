@@ -17,34 +17,24 @@ source mrdc_ws/install/setup.sh
 
 ## Launching
 
-### All In One
-
+To run the ardunio code purely on the robot, use the following:
 ```shell
-ros2 launch mrdc_launch primary.xml
+ros2 launch mrdc_launch serial.xml
 ```
 
-### Remote Only
-
-```shell
-ros2 launch mrdc_launch remote.xml
-```
-
-### GUI Only
-
-```shell
-ros2 launch mrdc_launch gui.xml
-```
-
-### GUI and Remote
-
+To run the remote and gui code (typically the remote computer) use the following:
 ```shell
 ros2 launch mrdc_serial remote_gui.xml
 ```
 
-### Arduino Only
-
+To run the remote code (typically the remote computer) without the gui, use the following:
 ```shell
-ros2 launch mrdc_launch serial.xml
+ros2 launch mrdc_launch remote.xml
+```
+
+If you are running everything on one computer, use the following:
+```shell
+ros2 launch mrdc_launch primary.xml
 ```
 
 ## VSCode Intellisense Fixes
