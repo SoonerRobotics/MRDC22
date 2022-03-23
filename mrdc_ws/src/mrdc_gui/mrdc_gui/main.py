@@ -1,18 +1,25 @@
+import json
+import logging
+import threading
 import cv2
 import rclpy
+import time
 from flask import Flask, render_template, Response
 from mrdc_msgs.msg import Motors
 
 app = Flask(__name__)
+log = logging.getLogger('werkzeug')
+log.disabled = True
+
 video_capture = cv2.VideoCapture(0)
 lastpacket = {"left_motor": 0, "right_motor": 0}
 
 
 def gen():
     while True:
-        didRead, image = video_capture.read()
+        _, image = video_capture.read()
         encode_param = [int(cv2.IMWRITE_JPEG_QUALITY), 90]
-        didEncode, encimg = cv2.imencode('.jpg', image, encode_param)
+        _, encimg = cv2.imencode('.jpg', image, encode_param)
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + bytes(encimg) + b'\r\n')
 
@@ -43,9 +50,9 @@ def onSerialMessage(d: Motors):
         "right_motor": d.right_motor
     }
 
-
 def main(args=None):
-    app.run()
+    flaskThread = threading.Thread(target = app.run)
+    flaskThread.start()
 
     rclpy.init(args=args)
 
