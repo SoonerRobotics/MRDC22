@@ -38,7 +38,7 @@ ros2 launch mrdc_launch gui.xml
 ### GUI and Remote
 
 ```shell
-ros2 launch mrdc_remote remote_gui.xml
+ros2 launch mrdc_serial remote_gui.xml
 ```
 
 ### Arduino Only
