@@ -32,10 +32,12 @@ ros2 launch mrdc_launch remote.xml
 ### GUI Only
 
 ```shell
-ros2 launch mrdc_gui gui.xml
+ros2 launch mrdc_launch gui.xml
 ```
 
-``` GUI and Remote
+### GUI and Remote
+
+```shell
 ros2 launch mrdc_remote remote_gui.xml
 ```
 
