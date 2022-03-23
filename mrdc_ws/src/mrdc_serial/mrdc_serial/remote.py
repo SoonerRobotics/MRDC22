@@ -18,16 +18,12 @@ def onJoyMessage(d: Joy):
         estop_publisher.publish(msg)
         return
 
-    # If you are getting weird motor values, this is the first place to look. I have had the below axes switch up on me before
     msg = Motors()
-
-    # The 0.3 below is a programmatic speed limiter, change if needed
-    #msg.left_motor = d.axes[1] * 0.3
-    #msg.right_motor = d.axes[4] * 0.3
-    #msg.trigger_motor = 0.0 if d.axes[5] >= 0 else -(d.axes[5] * 0.3)
-    msg.left_motor = d.axes[1] * 0.3
-    msg.right_motor = d.axes[3] * 0.3
-    msg.trigger_motor = 0.0
+    msg.left_motor = d.axes[1] * 0.2
+    msg.right_motor = d.axes[3] * 0.2
+    msg.elevator_motor = d.axes[0] * 0.2
+    msg.intake_motor = d.buttons[1] * 0.2
+    msg.launcher_motor = d.buttons[2] * 0.2
     publisher.publish(msg)
 
 

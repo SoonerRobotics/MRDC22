@@ -1,7 +1,7 @@
 import rclpy
 import serial
 import time
-import json
+import bson
 
 from std_msgs.msg import Bool
 from mrdc_msgs.msg import Motors
@@ -12,10 +12,10 @@ estop_subscriber = None
 isForceStopped = False
 
 # Drive Train Arduino
-dt_serial = serial.Serial("/dev/ttyUSB0", baudrate=115200)
+train_serial = serial.Serial("/dev/ttyUSB0", baudrate=115200)
 
 # Arm Arduino
-arm_serial = serial.Serial("/dev/ttyUSB1", baudrate=115200)
+ball_serial = serial.Serial("/dev/ttyUSB1", baudrate=115200)
 
 
 def onSerialMessage(d: Motors):
@@ -25,16 +25,19 @@ def onSerialMessage(d: Motors):
         return
 
     obj = {
+        "cmd": 0x01,
         "left_motor": d.left_motor,
-        "right_motor": d.right_motor,
+        "right_motor": d.right_motor
     }
-    dt_serial.write(json.dumps(obj).encode())
+    train_serial.write(bson.dumps(obj))
 
-    arm_obj = {
-        "left_motor": d.trigger_motor,
-        "right_motor": 0,
+    obj = {
+        "cmd": 0x01,
+        "elevator_motor": d.elevator_motor,
+        "intake_motor": d.intake_motor,
+        "launcher_motor": d.launcher_motor
     }
-    arm_serial.write(json.dumps(arm_obj).encode())
+    ball_serial.write(bson.dumps(obj))
 
 
 def onEStopSignal(d: Bool):
@@ -50,20 +53,16 @@ def main(args=None):
     rclpy.init(args=args)
 
     node = rclpy.create_node('mrdc_serial')
-    subscriber = node.create_subscription(
+    node.create_subscription(
         Motors, '/mrdc/serial', lambda msg: onSerialMessage(msg), 20
     )
-    estop_subscriber = node.create_subscription(
+    node.create_subscription(
         Bool, '/mrdc/estop', lambda msg: onEStopSignal(msg), 20
     )
 
     rclpy.spin(node)
-
     node.destroy_node()
     rclpy.shutdown()
-
-    dt_serial.close()
-    arm_serial.close()
 
 
 if __name__ == '__main__':
