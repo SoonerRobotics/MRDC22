@@ -1,0 +1,42 @@
+<html>
+
+<head>
+    <title>MRDC - Bot</title>
+</head>
+
+<body>
+    <div>
+        <h3 id="leftMotor">Left motor</h3>
+        <h3 id="rightMotor">Right motor</h3>
+
+        <canvas id="canvas" width="640px" height="480px"></canvas>
+    </div>
+
+    <script>
+        setInterval(() => {
+            fetch("/details").then((response) => {
+                return response.json();
+            }).then((data) => {
+                document.getElementById("leftMotor").innerHTML = "Left Motor -> " + data.left_motor;
+                document.getElementById("rightMotor").innerHTML = "Right Motor -> " + data.right_motor;
+            }).catch((error) => {
+                console.error(error);
+            });
+        }, 1000);
+    </script>
+
+    <script>
+        var ctx = document.getElementById("canvas").getContext('2d');
+        var img = new Image();
+        img.src = "{{ url_for('video_feed') }}";
+
+        function refreshCanvas() {
+            ctx.drawImage(img, 0, 0);
+        };
+        window.setInterval("refreshCanvas()", 50);
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,3 @@
+<launch>
+    <node pkg="mrdc_gui" exec="gui" name="gui" output="screen" prefix="stdbuf -o L" />
+</launch>
