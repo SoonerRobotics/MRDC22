@@ -49,5 +49,10 @@ source mrdc_ws/install/setup.sh
 code .
 ```
 
+## Controls
+
+For the drivetrain, use the left and right thumbsticks
+For the launcher, elevator and intake use the X, Y and B buttons
+
 ## GUI Website URL
 The website is hosted locally at: http://127.0.0.1:5000
