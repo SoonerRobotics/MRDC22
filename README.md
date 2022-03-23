@@ -58,3 +58,6 @@ When using VSCode to edit this project, you may find the custom ROS2 messages ha
 source mrdc_ws/install/setup.sh
 code .
 ```
+
+## GUI Website URL
+The website is hosted locally at: http://127.0.0.1:5000
