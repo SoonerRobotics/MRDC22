@@ -32,7 +32,7 @@ def onSerialMessage(d: Motors):
     train_serial.write(bson.dumps(obj))
 
     obj = {
-        "cmd": 0x01,
+        "cmd": 0x02,
         "elevator_motor": d.elevator_motor,
         "intake_motor": d.intake_motor,
         "launcher_motor": d.launcher_motor
