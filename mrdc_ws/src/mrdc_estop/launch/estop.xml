@@ -1,3 +1,0 @@
-<launch>
-    <node pkg="mrdc_estop" exec="estop" name="estop" output="screen" />
-</launch>
