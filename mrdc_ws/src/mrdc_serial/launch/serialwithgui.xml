@@ -1,0 +1,4 @@
+<launch>
+    <node pkg="mrdc_gui" exec="gui" name="gui" />
+    <node pkg="mrdc_serial" exec="serial" name="serial" />
+</launch>

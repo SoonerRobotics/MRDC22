@@ -22,12 +22,12 @@ To run the ardunio code purely on the robot, use the following:
 ros2 launch mrdc_launch serial.xml
 ```
 
-To run the remote and gui code (typically the remote computer) use the following:
+To run the ardunio code purely on the robot with the gui, use the following:
 ```shell
-ros2 launch mrdc_serial remote_gui.xml
+ros2 launch mrdc_serial serialwithgui.xml
 ```
 
-To run the remote code (typically the remote computer) without the gui, use the following:
+To run the remote code (typically the remote computer), use the following:
 ```shell
 ros2 launch mrdc_launch remote.xml
 ```
