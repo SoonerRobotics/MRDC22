@@ -21,7 +21,7 @@ def onJoyMessage(d: Joy):
     msg = Motors()
     msg.left_motor = d.axes[1] * 0.2
     msg.right_motor = d.axes[3] * 0.2
-    msg.elevator_motor = d.axes[0] * 0.2
+    msg.elevator_motor = d.buttons[3] * 0.2
     msg.intake_motor = d.buttons[1] * 0.2
     msg.launcher_motor = d.buttons[2] * 0.2
     publisher.publish(msg)
