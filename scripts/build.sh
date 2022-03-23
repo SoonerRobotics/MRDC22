@@ -2,6 +2,6 @@
 
 cd ./mrdc_ws
 
-colcon build
+colcon build --symlink-install
 
 source install/setup.sh
