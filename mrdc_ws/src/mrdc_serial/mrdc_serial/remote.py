@@ -12,18 +12,18 @@ estop_publisher = None
 def onJoyMessage(d: Joy):
     global node, publisher, estop_publisher
 
-    if d.buttons[0] >= 1:
-        msg = Bool()
-        msg.data = True
-        estop_publisher.publish(msg)
-        return
+    # if d.buttons[0] >= 1:
+    #     msg = Bool()
+    #     msg.data = True
+    #     estop_publisher.publish(msg)
+    #     return
 
     msg = Motors()
-    msg.left_motor = d.axes[1] * 0.2
-    msg.right_motor = d.axes[3] * 0.2
-    msg.elevator_motor = d.buttons[3] * 0.2
-    msg.intake_motor = d.buttons[1] * 0.2
-    msg.launcher_motor = d.buttons[2] * 0.2
+    msg.left_motor = d.axes[4] * 0.4
+    msg.right_motor = d.axes[1] * 0.4
+    msg.elevator_motor = d.buttons[3] * 0.9 + 1/255
+    msg.intake_motor = d.buttons[1] * 0.15 + 1/255
+    msg.launcher_motor = d.buttons[2] * 0.2 + 1/255
     publisher.publish(msg)
 
 

@@ -8,8 +8,8 @@ BSONStreamParser streamParser;
 
 void messageHandler(BSONObject *bson_obj);
 
-int left = 0;
-int right = 0;
+float left = 0;
+float right = 0;
 
 void setup()
 {
@@ -27,8 +27,8 @@ void messageHandler(BSONObject *bson_obj)
 
   if (cmd == 0x01)
   {
-    left = bson_obj->getField("left_motor").getInt();
-    right = bson_obj->getField("right_motor").getInt();
+    left = bson_obj->getField("left_motor").getDouble();
+    right = bson_obj->getField("right_motor").getDouble();
   }
 }
 

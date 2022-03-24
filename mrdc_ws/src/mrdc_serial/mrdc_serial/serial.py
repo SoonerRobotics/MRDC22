@@ -12,10 +12,10 @@ estop_subscriber = None
 isForceStopped = False
 
 # Drive Train Arduino
-train_serial = serial.Serial("/dev/ttyUSB0", baudrate=115200)
+train_serial = serial.Serial("/dev/ttyUSB1", baudrate=115200)
 
 # Arm Arduino
-ball_serial = serial.Serial("/dev/ttyUSB1", baudrate=115200)
+ball_serial = serial.Serial("/dev/ttyUSB0", baudrate=115200)
 
 
 def onSerialMessage(d: Motors):
@@ -29,7 +29,7 @@ def onSerialMessage(d: Motors):
         "left_motor": d.left_motor,
         "right_motor": d.right_motor
     }
-    train_serial.write(bson.dumps(obj))
+    train_serial.write(bson.BSON.encode(obj))
 
     obj = {
         "cmd": 0x02,
@@ -37,7 +37,7 @@ def onSerialMessage(d: Motors):
         "intake_motor": d.intake_motor,
         "launcher_motor": d.launcher_motor
     }
-    ball_serial.write(bson.dumps(obj))
+    ball_serial.write(bson.BSON.encode(obj))
 
 
 def onEStopSignal(d: Bool):
